@@ -1,7 +1,6 @@
 package com.learning.management.system.cart.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -13,11 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import lombok.Data;
+import javax.persistence.Table;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
+@Table(name = "country")
+@JsonIgnoreProperties("courses")
 public class Country {
 
     @Id
@@ -37,13 +43,6 @@ public class Country {
     @JsonIgnoreProperties("taxes")
     Set<Taxes> taxes = new HashSet<>();
 
-    @ManyToMany(cascade = { CascadeType.PERSIST,
-        CascadeType.MERGE } , fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Course_Country_Mapping",
-        joinColumns = { @JoinColumn(name = "country_id") },
-        inverseJoinColumns = { @JoinColumn(name = "id") }
-    )
-    @JsonIgnoreProperties("courses")
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL , mappedBy = "countries")
     Set<Course> courses = new HashSet<>();
 }

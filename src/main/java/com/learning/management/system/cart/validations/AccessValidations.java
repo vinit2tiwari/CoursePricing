@@ -22,7 +22,7 @@ public class AccessValidations implements ValidationEngine {
     public void validate(RequestedCourse requestedCourse, List<ValidationException> errors) {
         try{
             Course course = courseService.getCourse(requestedCourse.getCourseId());
-            if(!course.getCountries().contains(requestedCourse.getLocation())){
+            if(!course.getCountries().stream().anyMatch(country->country.getName().equalsIgnoreCase(requestedCourse.getLocation()))){
                 errors.add(new ValidationException("The requested course is not accessible in your location :: " + requestedCourse.toString()));
             }
         }catch (CourseManagementException ex){

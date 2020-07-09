@@ -1,5 +1,6 @@
 package com.learning.management.system.cart.validations;
 
+import com.learning.management.system.cart.dao.Country;
 import com.learning.management.system.cart.dao.Course;
 import com.learning.management.system.cart.exceptions.MissingDataException;
 import com.learning.management.system.cart.exceptions.ValidationException;
@@ -18,8 +19,8 @@ public class DataValidation implements ValidationEngine {
     @Override
     public void validate(RequestedCourse requestedCourse, List<ValidationException> errors) {
         try{
-            courseService.getCourse(requestedCourse.getCourseId());
-            courseService.getCountry(requestedCourse.getLocation());
+            Course course = courseService.getCourse(requestedCourse.getCourseId());
+            Country country = courseService.getCountry(requestedCourse.getLocation());
         } catch (MissingDataException ex){
             errors.add(new ValidationException(ex.getMessage()));
         }

@@ -47,6 +47,7 @@ public class CourseController {
              result = courseStrategy.getCoursePrice(requestedCourse);;
         }catch (CourseManagementException ex){
             errors.add(new ValidationException(ex.getMessage()));
+            return new ResponseEntity<>(errors.stream().map(exception->exception.getMessage()).collect(Collectors.toList()) , HttpStatus.NOT_ACCEPTABLE);
         }
 
         return new ResponseEntity<>(result , HttpStatus.ACCEPTED);
