@@ -9,8 +9,10 @@ Assumptions/ Know limitations:
 
 
 Steps to run the app :
-1. mvn clean install
-2. mvn spring-boot:run
+1. In application.properties update <DATABASE_NAME>,<USER_NAME>,<PASSWORD>.
+2. mvn clean install
+3. mvn spring-boot:run
+4. Once server has started successfully onboard data using sql file present at /src/main/resources/static/sourceData.sql.
 
 Deployment:
 1. Once the app is up and running swagger endpoint can be accessed at http://localhost:8080/swagger-ui.html

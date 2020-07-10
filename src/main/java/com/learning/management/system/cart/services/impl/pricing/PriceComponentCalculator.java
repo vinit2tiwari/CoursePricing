@@ -13,6 +13,9 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class is responsible for aggregating different components to determine final price for a course.
+ */
 @Service
 public class PriceComponentCalculator {
 

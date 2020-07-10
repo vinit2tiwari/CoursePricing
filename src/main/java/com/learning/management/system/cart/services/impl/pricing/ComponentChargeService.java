@@ -6,6 +6,9 @@ import com.learning.management.system.cart.services.interfaces.PricingService;
 import org.springframework.stereotype.Service;
 
 @Service
+/**
+ * This is sample implementation where any other component  which communicates with  external service to derive  charges can be implemented.
+ */
 public class ComponentChargeService implements PricingService {
 
     @Override

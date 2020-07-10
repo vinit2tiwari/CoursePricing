@@ -9,6 +9,10 @@ import com.learning.management.system.cart.services.interfaces.PricingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * This service can be used to handle all the  pricing components which are either fixed or certain
+ * proportion of base price.
+ */
 @Service
 public class TaxService implements PricingService {
 
